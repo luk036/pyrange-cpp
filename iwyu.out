@@ -1,0 +1,56 @@
+Consolidate compiler generated dependencies of target Py2CppTests
+[ 10%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/main.cpp.o
+[ 20%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_dict.cpp.o
+Warning: include-what-you-use reported diagnostics:
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_dict.cpp should add these lines:
+#include <unordered_map>      // for operator!=, __hash_map_const_iterator
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_dict.cpp should remove these lines:
+
+The full include-list for /data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_dict.cpp:
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
+#include <pyrange/dict.hpp>    // for dict, key_iterator
+#include <unordered_map>      // for operator!=, __hash_map_const_iterator
+#include <utility>            // for pair
+---
+
+[ 30%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_enumerate.cpp.o
+[ 40%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_frac.cpp.o
+[ 50%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_integers.cpp.o
+Warning: include-what-you-use reported diagnostics:
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_integers.cpp should add these lines:
+#include <__config>           // for std
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_integers.cpp should remove these lines:
+- #include <iosfwd>  // lines 3-3
+
+The full include-list for /data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_integers.cpp:
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
+#include <__config>           // for std
+#include <limits>             // for numeric_limits
+#include <type_traits>        // for make_signed_t
+---
+
+[ 60%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_range.cpp.o
+[ 70%] Building CXX object test/CMakeFiles/Py2CppTests.dir/source/test_set.cpp.o
+Warning: include-what-you-use reported diagnostics:
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_set.cpp should add these lines:
+#include <__hash_table>       // for __hash_const_iterator, operator!=
+
+/data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_set.cpp should remove these lines:
+
+The full include-list for /data/data/com.termux/files/home/github/pyrange-cpp/test/source/test_set.cpp:
+#include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
+#include <__hash_table>       // for __hash_const_iterator, operator!=
+#include <pyrange/set.hpp>     // for set
+---
+
+[ 80%] Linking CXX executable Py2CppTests
+[ 80%] Built target Py2CppTests
+Consolidate compiler generated dependencies of target Py2CppStandalone
+[ 90%] Building CXX object standalone/CMakeFiles/Py2CppStandalone.dir/source/main.cpp.o
+[100%] Linking CXX executable PyRange
+[100%] Built target Py2CppStandalone
