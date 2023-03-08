@@ -8,6 +8,7 @@ namespace py {
 template <typename T> struct Robin;
 
 namespace detail {
+
 template <typename T> struct RobinSlNode {
   RobinSlNode *next;
   T key;
@@ -35,6 +36,7 @@ template <typename T> struct RobinIterableWrapper {
   auto end() -> RobinIterator<T>;
   // auto size() const -> size_t { return rr->cycle.size() - 1; }
 };
+
 } // namespace detail
 
 template <typename T> struct Robin {

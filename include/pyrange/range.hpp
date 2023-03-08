@@ -2,7 +2,6 @@
 
 #include <cstddef>
 #include <type_traits>
-#include <utility>
 
 #if __cpp_constexpr >= 201304
 #define CONSTEXPR14 constexpr
@@ -10,41 +9,43 @@
 #define CONSTEXPR14 inline
 #endif
 
-template <typename T> using Value_type = typename T::value_type;
-
 namespace py {
 
 namespace detail {
-template <typename T> struct _iterator {
+
+template <typename T> struct RangeIterator {
+  using value_type = T; // luk:
+  using key_type = T;   // luk:
+
   T i;
-  constexpr auto operator!=(const _iterator &other) const -> bool {
+  constexpr auto operator!=(const RangeIterator &other) const -> bool {
     return this->i != other.i;
   }
-  constexpr auto operator==(const _iterator &other) const -> bool {
+  constexpr auto operator==(const RangeIterator &other) const -> bool {
     return this->i == other.i;
   }
   CONSTEXPR14 auto operator*() const -> const T & { return this->i; }
   CONSTEXPR14 auto operator*() -> T & { return this->i; }
-  CONSTEXPR14 auto operator++() -> _iterator & {
+  CONSTEXPR14 auto operator++() -> RangeIterator & {
     ++this->i;
     return *this;
   }
-  CONSTEXPR14 auto operator++(int) -> _iterator {
+  CONSTEXPR14 auto operator++(int) -> RangeIterator {
     auto temp = *this;
     ++*this;
     return temp;
   }
 };
 
-template <typename T> struct iterable_wrapper {
+template <typename T> struct RangeIterableWrapper {
 public:
-  using value_type = T; // luk:
-  using key_type = T;   // luk:
+  using value_type = T;              // luk:
+  using key_type = T;                // luk:
+  using iterator = RangeIterator<T>; // luk
 
-  // static_assert(sizeof(value_type) >= 0, "make comipler happy");
-  // static_assert(sizeof(key_type) >= 0, "make comipler happy");
+  // static_assert(sizeof(value_type) >= 0, "make compiler happy");
+  // static_assert(sizeof(key_type) >= 0, "make compiler happy");
 
-  using iterator = _iterator<T>; // luk
   T start;
   T stop;
   constexpr auto begin() const -> iterator { return iterator{this->start}; }
@@ -64,15 +65,15 @@ public:
 } // namespace detail
 
 template <typename T>
-CONSTEXPR14 auto range(T start, T stop) -> detail::iterable_wrapper<T> {
+CONSTEXPR14 auto range(T start, T stop) -> detail::RangeIterableWrapper<T> {
   if (stop < start) {
     stop = start;
   }
-  return detail::iterable_wrapper<T>{start, stop};
+  return detail::RangeIterableWrapper<T>{start, stop};
 }
 
 template <typename T>
-CONSTEXPR14 auto range(T stop) -> detail::iterable_wrapper<T> {
+CONSTEXPR14 auto range(T stop) -> detail::RangeIterableWrapper<T> {
   return range(T(0), stop);
 }
 
