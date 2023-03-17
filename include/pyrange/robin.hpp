@@ -2,20 +2,19 @@
 
 #include <vector>
 
-namespace py {
+namespace fun {
 
 // Forward declaration
 template <typename T> struct Robin;
 
 namespace detail {
-
 template <typename T> struct RobinSlNode {
   RobinSlNode *next;
   T key;
 };
 
 template <typename T> struct RobinIterator {
-  RobinSlNode<T> *cur;
+  const RobinSlNode<T> *cur;
   auto operator!=(const RobinIterator &other) const -> bool {
     return cur != other.cur;
   }
@@ -30,13 +29,12 @@ template <typename T> struct RobinIterator {
 };
 
 template <typename T> struct RobinIterableWrapper {
-  Robin<T> *rr;
+  const Robin<T> *rr;
   T from_part;
-  auto begin() -> RobinIterator<T>;
-  auto end() -> RobinIterator<T>;
+  auto begin() const -> RobinIterator<T>;
+  auto end() const -> RobinIterator<T>;
   // auto size() const -> size_t { return rr->cycle.size() - 1; }
 };
-
 } // namespace detail
 
 template <typename T> struct Robin {
@@ -53,7 +51,7 @@ template <typename T> struct Robin {
     }
   }
 
-  auto exclude(T from_part) -> detail::RobinIterableWrapper<T> {
+  auto exclude(T from_part) const -> detail::RobinIterableWrapper<T> {
     return detail::RobinIterableWrapper<T>{this, from_part};
   }
 };
@@ -61,14 +59,14 @@ template <typename T> struct Robin {
 namespace detail {
 
 template <typename T>
-inline auto RobinIterableWrapper<T>::begin() -> RobinIterator<T> {
+inline auto RobinIterableWrapper<T>::begin() const -> RobinIterator<T> {
   return RobinIterator<T>{this->rr->cycle[from_part].next};
 }
 
 template <typename T>
-inline auto RobinIterableWrapper<T>::end() -> RobinIterator<T> {
+inline auto RobinIterableWrapper<T>::end() const -> RobinIterator<T> {
   return RobinIterator<T>{&this->rr->cycle[from_part]};
 }
 } // namespace detail
 
-} // namespace py
+} // namespace fun

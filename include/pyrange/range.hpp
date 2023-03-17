@@ -30,7 +30,7 @@ template <typename T> struct RangeIterator {
   constexpr auto operator==(const RangeIterator &other) const -> bool {
     return this->i == other.i;
   }
-  // CONSTEXPR14 auto operator*() const -> const_reference { return this->i; }
+  CONSTEXPR14 auto operator*() const -> const_reference { return this->i; }
   CONSTEXPR14 auto operator*() -> reference { return this->i; }
   CONSTEXPR14 auto operator++() -> RangeIterator & {
     ++this->i;
@@ -45,7 +45,9 @@ template <typename T> struct RangeIterator {
 
 template <typename T> struct RangeIterableWrapper {
 public:
-  using iterator = RangeIterator<T>; // luk
+  using iterator = RangeIterator<T>;
+  using value_type = T;
+  using key_type = T;
 
   // static_assert(sizeof(value_type) >= 0, "make compiler happy");
   // static_assert(sizeof(key_type) >= 0, "make compiler happy");
