@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iterator>
 #include <type_traits>
 
 #if __cpp_constexpr >= 201304
@@ -14,8 +15,13 @@ namespace py {
 namespace detail {
 
 template <typename T> struct RangeIterator {
-  using value_type = T; // luk:
-  using key_type = T;   // luk:
+  using iterator_category = std::output_iterator_tag;
+  using difference_type = std::ptrdiff_t;
+  using value_type = T;
+  using pointer = T *;               // or also value_type*
+  using reference = T &;             // or also value_type&
+  using const_reference = const T &; // or also value_type&
+  using key_type = T;                // luk:
 
   T i;
   constexpr auto operator!=(const RangeIterator &other) const -> bool {
@@ -24,23 +30,21 @@ template <typename T> struct RangeIterator {
   constexpr auto operator==(const RangeIterator &other) const -> bool {
     return this->i == other.i;
   }
-  CONSTEXPR14 auto operator*() const -> const T & { return this->i; }
-  CONSTEXPR14 auto operator*() -> T & { return this->i; }
+  // CONSTEXPR14 auto operator*() const -> const_reference { return this->i; }
+  CONSTEXPR14 auto operator*() -> reference { return this->i; }
   CONSTEXPR14 auto operator++() -> RangeIterator & {
     ++this->i;
     return *this;
   }
   CONSTEXPR14 auto operator++(int) -> RangeIterator {
     auto temp = *this;
-    ++*this;
+    ++(*this);
     return temp;
   }
 };
 
 template <typename T> struct RangeIterableWrapper {
 public:
-  using value_type = T;              // luk:
-  using key_type = T;                // luk:
   using iterator = RangeIterator<T>; // luk
 
   // static_assert(sizeof(value_type) >= 0, "make compiler happy");

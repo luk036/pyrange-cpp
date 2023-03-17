@@ -26,8 +26,8 @@ template <typename T> struct EnumerateIterator {
     return *this;
   }
 
-  auto operator*() const -> std::pair<size_t, iter_ref> {
-    return std::make_pair(i, *iter);
+  auto operator*() -> std::pair<size_t, iter_ref> {
+    return std::pair<size_t, iter_ref>{i, *iter};
   }
 };
 
