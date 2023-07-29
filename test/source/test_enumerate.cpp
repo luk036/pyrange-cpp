@@ -5,12 +5,12 @@
 #include <utility>               // for pair
 
 TEST_CASE("Test enumerate") {
-  auto R = py::range(10);
-  auto count = 0;
-  for (const auto &p : py::enumerate(R)) {
-    static_assert(sizeof p.first >= 0, "make comipler happy");
-    CHECK(p.first == count);
-    ++count;
-  }
-  CHECK(count == R.size());
+    auto R = py::range(10);
+    auto count = 0;
+    for (const auto &p : py::enumerate(R)) {
+        static_assert(sizeof p.first >= 0, "make comipler happy");
+        CHECK(p.first == count);
+        ++count;
+    }
+    CHECK(count == R.size());
 }
