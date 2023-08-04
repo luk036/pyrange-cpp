@@ -2,7 +2,7 @@
 
 #include <pyrange/enumerate.hpp> // for enumerate, iterable_wrapper
 #include <pyrange/range.hpp>     // for range, iterable_wrapper
-#include <utility>               // for pair
+#include <utility>              // for pair
 
 TEST_CASE("Test enumerate") {
     auto R = py::range(10);

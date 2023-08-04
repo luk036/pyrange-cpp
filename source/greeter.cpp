@@ -1,10 +1,9 @@
-#include <fmt/format.h>
 #include <pyrange/greeter.h>
+#include <fmt/format.h>
 
 using namespace pyrange;
-using namespace std;
 
-PyRange::PyRange(string _name) : name(move(_name)) {}
+PyRange::PyRange(std::string _name) : name(std::move(_name)) {}
 
 std::string PyRange::greet(LanguageCode lang) const {
     switch (lang) {
