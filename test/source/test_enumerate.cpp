@@ -1,8 +1,8 @@
-#include <doctest/doctest.h> // for ResultBuilder, CHECK, TestCase, TEST...
+#include <doctest/doctest.h>  // for ResultBuilder, CHECK, TestCase, TEST...
 
-#include <pyrange/enumerate.hpp> // for enumerate, iterable_wrapper
-#include <pyrange/range.hpp>     // for range, iterable_wrapper
-#include <utility>              // for pair
+#include <pyrange/enumerate.hpp>  // for enumerate, iterable_wrapper
+#include <pyrange/range.hpp>      // for range, iterable_wrapper
+#include <utility>                // for pair
 
 TEST_CASE("Test enumerate") {
     auto R = py::range(10);
