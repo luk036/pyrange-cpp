@@ -1,5 +1,0 @@
-name: pyrange-cpp
-channels:
-  - conda-forge
-dependencies:
-  - doxygen

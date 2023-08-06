@@ -1,8 +1,0 @@
-/build*
-/.vscode
-/cpm_modules
-/.cache
-/.xmake
-/.trunk
-compile_commands.json
-.DS_Store
