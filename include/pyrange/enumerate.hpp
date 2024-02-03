@@ -35,7 +35,7 @@ namespace py {
              * iterators are not pointing to the same element. Otherwise, it returns
              * `false`, indicating that the two iterators are equal.
              *
-             * @param other
+             * @param[in] other
              * @return true
              * @return false
              */
@@ -149,7 +149,7 @@ namespace py {
      * want to iterate over a constant container without modifying its elements.
      *
      * @tparam T
-     * @param iterable
+     * @param[in] iterable
      * @return detail::EnumerateIterableWrapper<const T>
      */
     template <typename T> inline auto const_enumerate(const T &iterable)

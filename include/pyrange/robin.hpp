@@ -43,7 +43,7 @@ namespace fun {
              * not equal to the `cur` member of the `other` object, and `false`
              * otherwise.
              *
-             * @param other
+             * @param[in] other
              * @return true
              * @return false
              */
@@ -58,7 +58,7 @@ namespace fun {
              * and returns `true` if the `cur` member of the current object is equal
              * to the `cur` member of the `other` object, and `false` otherwise.
              *
-             * @param other
+             * @param[in] other
              * @return true
              * @return false
              */
@@ -155,7 +155,7 @@ namespace fun {
          * takes a parameter `num_parts` of type `T`, which represents the number of
          * parts in the round-robin cycle.
          *
-         * @param num_parts
+         * @param[in] num_parts
          */
         explicit Robin(T num_parts) : cycle(num_parts) {
             auto *slptr = &this->cycle[num_parts - 1];
@@ -174,7 +174,7 @@ namespace fun {
          * The `exclude` method in the `Robin` class returns an iterable wrapper
          * that excludes a specified part from the cycle.
          *
-         * @param from_part
+         * @param[in] from_part
          * @return detail::RobinIterableWrapper<T>
          */
         auto exclude(T from_part) const -> detail::RobinIterableWrapper<T> {

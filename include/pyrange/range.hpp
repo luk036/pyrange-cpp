@@ -36,7 +36,7 @@ namespace py {
          * `RangeIterator` object `other` as a parameter and returns a boolean value
          * indicating whether the two iterators are not equal.
          *
-         * @param other
+         * @param[in] other
          * @return true
          * @return false
          */
@@ -52,7 +52,7 @@ namespace py {
          * `RangeIterator` object `other` as a parameter and returns a boolean value
          * indicating whether the two iterators are equal.
          *
-         * @param other
+         * @param[in] other
          * @return true
          * @return false
          */
@@ -187,7 +187,7 @@ namespace py {
         /**
          * @brief
          *
-         * @param n
+         * @param[in] n
          * @return T
          */
         constexpr auto operator[](size_t n) const -> T {
@@ -197,7 +197,7 @@ namespace py {
         /**
          * @brief
          *
-         * @param n
+         * @param[in] n
          * @return true
          * @return false
          */
@@ -212,8 +212,8 @@ namespace py {
      * The range includes all values from `start` up to, but not including, `stop`.
      *
      * @tparam T
-     * @param start
-     * @param stop
+     * @param[in] start
+     * @param[in] stop
      * @return Range<T>
      */
     template <typename T> CONSTEXPR14 auto range(T start, T stop) -> Range<T> {
@@ -231,7 +231,7 @@ namespace py {
      * all values from 0 up to, but not including, `stop`.
      *
      * @tparam T
-     * @param stop
+     * @param[in] stop
      * @return Range<T>
      */
     template <typename T> CONSTEXPR14 auto range(T stop) -> Range<T> { return range(T(0), stop); }
